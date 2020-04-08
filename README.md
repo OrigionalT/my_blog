@@ -1,2 +1,3 @@
 # my_blog
 JENKINS TEST
+TEST2
