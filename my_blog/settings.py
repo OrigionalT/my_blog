@@ -31,13 +31,16 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'password_reset',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.articles'
+    'apps.articles',
+    'apps.userprofile',
+
 ]
 
 MIDDLEWARE = [
@@ -131,3 +134,23 @@ STATIC_ROOT = '/var/www/static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+# SMTP服务器，改为你的邮箱的smtp!
+EMAIL_HOST = 'smtp.163.com'
+# 改为你自己的邮箱名！
+EMAIL_HOST_USER = '17717674881@163.com'
+# 你的邮箱密码
+EMAIL_HOST_PASSWORD = 'VIAVUYPIEJRDQDBN'
+# 发送邮件的端口
+EMAIL_PORT = 465
+# 是否使用 SSL
+EMAIL_USE_SSL = True
+# 是否使用 TLS
+EMAIL_USE_TLS = False
+# 默认的发件人
+DEFAULT_FROM_EMAIL = '17717674881@163.com'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+# 媒体文件
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

@@ -1,10 +1,10 @@
-
 from django import forms
 from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
 from django.utils import timezone
+
 
 # Create your models here.
 class ArticlePost(models.Model):
@@ -13,6 +13,7 @@ class ArticlePost(models.Model):
     body = models.TextField(verbose_name='正文')
     created_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
     updated_time = models.DateTimeField(verbose_name='更新时间', auto_now=True)
+    total_views = models.PositiveIntegerField(default=0)
 
     class Meta:
         db_table = 'tb_articles'
