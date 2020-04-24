@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 
 from .models import ArticlePost, ArticlePostForm
 
+
 @login_required(login_url='/userprofile/login/')
 def article_update(request, id):
     """
@@ -37,6 +38,7 @@ def article_update(request, id):
         article_post_form = ArticlePostForm()
         content = {'article': article, 'article_post_form': article_post_form}
         return render(request, 'articles/update.html', content)
+
 
 @login_required(login_url='/userprofile/login/')
 def article_create(request):
@@ -85,7 +87,7 @@ def article_list(request):
     articles = paginator.get_page(page)
 
     # 增加 search 到 context
-    context = { 'articles': articles, 'order': order, 'search': search }
+    context = {'articles': articles, 'order': order, 'search': search}
 
     return render(request, 'articles/list.html', context)
 
@@ -112,15 +114,17 @@ def article_detail(request, id):
     article.total_views += 1
     article.save(update_fields=['total_views'])
     # 将markdown语法渲染成html样式
-    article.body = markdown.markdown(article.body,
-                                     extensions=[
-                                         # 包含 缩写、表格等常用扩展
-                                         'markdown.extensions.extra',
-                                         # 语法高亮扩展
-                                         'markdown.extensions.codehilite',
-                                     ])
+    # 修改 Markdown 语法渲染
+    md = markdown.Markdown(
+        extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+            'markdown.extensions.toc',
+        ]
+    )
+    article.body = md.convert(article.body)
 
     # 需要传递给模板的对象
-    content = {'article': article}
+    content = {'article': article,'toc':md.toc}
     # 载入模板，并返回context对象
     return render(request, 'articles/detail.html', content)
