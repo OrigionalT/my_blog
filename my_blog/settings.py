@@ -143,7 +143,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # 部署要用
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 # 使用join的时候不要使用绝对路径 join会默认把之前的组件舍弃掉
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
