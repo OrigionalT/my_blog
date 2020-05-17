@@ -7,3 +7,4 @@ TEST3
 部署测试3jenkins
 部署测试4jenkins
 部署测试5jenkins
+部署测试6jenkins
