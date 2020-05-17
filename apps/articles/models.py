@@ -19,6 +19,10 @@ class ArticleColumn(models.Model):
     # 创建时间
     created = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        verbose_name = '栏目'
+        verbose_name_plural = verbose_name
+
     def __str__(self):
         return self.title
 
